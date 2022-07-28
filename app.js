@@ -18,7 +18,7 @@ mongoose.connect("mongodb://localhost:27017/userDB", (err) => {
 
 const userSchema = mongoose.Schema({
     email: String,
-    passward: String
+    password: String
 });
 
 const User = mongoose.model("User", userSchema);
@@ -35,6 +35,39 @@ app.get("/register", (req, res) => {
     res.render("register");
 });
 
+app.post("/register", (req, res) => {
+    const user = new User({
+        email: req.body.username,
+        password: req.body.password
+    });
+
+    user.save((err) => {
+        if (err) console.log(err.message);
+        else {
+            console.log("Successfully registered!");
+            res.render("secrets");
+        }
+    });
+});
+
+app.post("/login", (req, res) => {
+    const enteredEmail = req.body.username;
+    const password = req.body.password;
+
+    User.findOne({email: enteredEmail}, (err, user) => {
+        if (err) console.log(err.message);
+        else {
+            if (user) {
+                if(user.password === password) {
+                    res.render("secrets");
+                } else {
+                    res.send("Incorrect Password!");
+                }
+            }
+        }
+    });
+
+});
 
 
 
