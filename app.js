@@ -24,7 +24,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authenticate('session'));
 
-mongoose.connect("mongodb://localhost:27017/userDB", (err) => {
+mongoose.connect(process.env.MONGODB, (err) => {
     if (err) console.log(err.message);
     else {
         console.log("Connected to MongoDB");
@@ -165,6 +165,6 @@ app.post("/login", (req, res) => {
 
 
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("Server running at port 3000");
 });
