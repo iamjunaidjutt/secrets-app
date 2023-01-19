@@ -1,2 +1,3 @@
 # secrets-app
+It is a secret app in which you can login securely by using the google credentials authentication and by using the sign-up or sign-in options for your account and you can see all the secrets that other post their latest and you cannot see their credentials only see secrets without knowing who were posted it.
 Skills Acquired: Frontend using EJS, backend development using node.js with express.js, use of authentication methods like mongoose-ecryption, md5,bycrypt salt&amp;hash, auth2.0 google using passport.js and store register credentials in mongoDB server and deploy on the server using heroku.
